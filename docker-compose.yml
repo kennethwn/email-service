@@ -1,0 +1,34 @@
+# version: "3.9"
+
+name: "kent-worker-service"
+
+services:
+  # worker-service:
+  #   container_name: worker-service
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8080:8083"
+  #   restart: always
+
+  redis-local:
+    image: redis
+    container_name: redis-local
+    ports:
+      - "6379:6379"
+    networks:
+      - redis-net
+
+  redis-insight:
+    image: redislabs/redisinsight:latest
+    container_name: redis-insight
+    ports:
+      - "8001:5540"
+    restart: unless-stopped
+    networks:
+      - redis-net
+
+networks:
+  redis-net:
+    driver: bridge
