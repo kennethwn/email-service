@@ -23,6 +23,7 @@ type DBConfig struct {
 	Password          string `mapstructure:"password"`
 	Port              int    `mapstructure:"port"`
 	User              string `mapstructure:"user"`
+	PoolMode          string `mapstructure:"pool_mode"`
 	MaxOpenConnection int    `mapstructure:"max_open_connection"`
 }
 
